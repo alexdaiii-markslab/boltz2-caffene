@@ -94,7 +94,7 @@ work depending on your system dependencies.
 ```bash
 mamba create -n boltz2 python=3.12 pip
 mamba activate boltz2
-pip install -r requirements.txt
+pip boltz2
 ```
 
 ## Running
