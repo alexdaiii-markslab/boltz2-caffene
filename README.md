@@ -106,7 +106,7 @@ is used for computation (GPU 1). To run the code, you can use the following comm
 
 ```bash
 export CUDA_VISIBLE_DEVICES=1
-boltz2 predict <YOUR_YAML_FILE>
+boltz predict <YOUR_YAML_FILE> --out_dir output
 ```
 
 The export makes sure that the Boltz2 code uses the second GPU for computation.
