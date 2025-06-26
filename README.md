@@ -116,7 +116,7 @@ that is not used for display (since that uses VRAM to display the desktop).
 ## The A6000 Machine
 
 ```bash
-boltz predict <YOUR_YAML_FILE> --out_dir output --use_msa_server
+boltz predict inputs/xanthines --out_dir output --use_msa_server --devices 4
 ```
 
 
