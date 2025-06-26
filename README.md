@@ -118,3 +118,12 @@ that is not used for display (since that uses VRAM to display the desktop).
 ```bash
 boltz predict <YOUR_YAML_FILE> --out_dir output --use_msa_server
 ```
+
+
+## RYR1 VRAM Usage
+
+| Amino Acids | GB VRAM |
+|-------------|---------|
+| 400         | 6.5 GB  |
+| 600         | 10.5 GB |
+| 1200        | 32 GB   |
