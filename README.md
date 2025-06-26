@@ -106,9 +106,15 @@ is used for computation (GPU 1). To run the code, you can use the following comm
 
 ```bash
 export CUDA_VISIBLE_DEVICES=1
-boltz predict <YOUR_YAML_FILE> --out_dir output
+boltz predict <YOUR_YAML_FILE> --out_dir output --use_msa_server
 ```
 
 The export makes sure that the Boltz2 code uses the second GPU for computation.
 To get the id of the GPU, you can use the `nvidia-smi` command. Choose the one
 that is not used for display (since that uses VRAM to display the desktop).
+
+## The A6000 Machine
+
+```bash
+boltz predict <YOUR_YAML_FILE> --out_dir output --use_msa_server
+```
