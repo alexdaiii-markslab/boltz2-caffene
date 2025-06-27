@@ -4,10 +4,7 @@ constraints:
     contacts:
     - - A
       - 967
-    - - A
-      - 4
-    - - A
-      - 1247
+    max_distance: 10.0
 properties:
 - affinity:
     binder: B
