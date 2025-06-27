@@ -4,5 +4,11 @@ channels:
 dependencies:
   - python=3.12
   - pip
+  - jupyter
+  - pandas
+  - numpy
+  - scipy
+  - matplotlib
+  - seaborn
   - pip:
       - boltz

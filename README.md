@@ -126,4 +126,4 @@ boltz predict inputs/xanthines --out_dir output --use_msa_server --devices 4
 |-------------|---------|
 | 400         | 6.5 GB  |
 | 600         | 10.5 GB |
-| 1200        | 32 GB   |
+| 1200        | 32-40GB |

@@ -1,3 +1,16 @@
+constraints:
+- pocket:
+    binder: B
+    contacts:
+    - - A
+      - 967
+    - - A
+      - 4
+    - - A
+      - 1247
+properties:
+- affinity:
+    binder: B
 sequences:
 - protein:
     id: A
@@ -5,12 +18,3 @@ sequences:
 - ligand:
     id: B
     smiles: O=C1NC(C2=C(N1)N=CC(=C2)C(=O)O)=O
-constraints:
-- pocket:
-    binder: B
-    contacts:
-    - - A
-      - 967
-properties:
-- affinity:
-    binder: B
