@@ -9,6 +9,14 @@ constraints:
     - - A
       - 1247
     max_distance: 3.2
+- pocket:
+    binder: C
+    contacts:
+    - - A
+      - 1230
+    - - A
+      - 1205
+    max_distance: 5
 properties:
 - affinity:
     binder: B
@@ -19,3 +27,6 @@ sequences:
 - ligand:
     id: B
     smiles: CC(=O)CCCCN1C(=O)C2=C(N=CN2C)N(C1=O)C
+- ligand:
+    ccd: ATP
+    id: C
