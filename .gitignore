@@ -2,6 +2,8 @@ examples
 .idea
 output
 *.cif
+*.png
+*.svg
 
 ### JupyterNotebooks template
 # gitignore template for Jupyter Notebooks

@@ -3,12 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.12
+  - conda-forge::graphviz
   - pip
-  - jupyter
-  - pandas
-  - numpy
-  - scipy
-  - matplotlib
-  - seaborn
   - pip:
       - boltz

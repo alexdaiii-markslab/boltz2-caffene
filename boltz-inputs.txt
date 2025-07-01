@@ -1,0 +1,159 @@
+## STRUCTURE:
+
+token_index torch.Size([1, 397]) torch.int64
+residue_index torch.Size([1, 397]) torch.int64
+asym_id torch.Size([1, 397]) torch.int64
+entity_id torch.Size([1, 397]) torch.int64
+sym_id torch.Size([1, 397]) torch.int64
+mol_type torch.Size([1, 397]) torch.int64
+res_type torch.Size([1, 397, 33]) torch.int64
+disto_center torch.Size([1, 397, 3]) torch.float32
+token_bonds torch.Size([1, 397, 397, 1]) torch.float32
+type_bonds torch.Size([1, 397, 397]) torch.int64
+token_pad_mask torch.Size([1, 397]) torch.float32
+token_resolved_mask torch.Size([1, 397]) torch.float32
+token_disto_mask torch.Size([1, 397]) torch.float32
+contact_conditioning torch.Size([1, 397, 397, 5]) torch.int64
+contact_threshold torch.Size([1, 397, 397]) torch.float32
+method_feature torch.Size([1, 397]) torch.int64
+modified torch.Size([1, 397]) torch.int64
+cyclic_period torch.Size([1, 397]) torch.float32
+affinity_token_mask torch.Size([1, 397]) torch.float32
+ref_pos torch.Size([1, 2976, 3]) torch.float32
+atom_resolved_mask torch.Size([1, 2976]) torch.bool
+ref_atom_name_chars torch.Size([1, 2976, 4, 64]) torch.int64
+ref_element torch.Size([1, 2976, 128]) torch.int64
+ref_charge torch.Size([1, 2976]) torch.float32
+ref_chirality torch.Size([1, 2976]) torch.int64
+atom_backbone_feat torch.Size([1, 2976, 17]) torch.int64
+ref_space_uid torch.Size([1, 2976]) torch.int64
+coords torch.Size([1, 1, 2976, 3]) torch.float32
+atom_pad_mask torch.Size([1, 2976]) torch.float32
+atom_to_token torch.Size([1, 2976, 397]) torch.int64
+token_to_rep_atom torch.Size([1, 397, 2976]) torch.int64
+r_set_to_rep_atom torch.Size([1, 384, 2976]) torch.int64
+token_to_center_atom torch.Size([1, 397, 2976]) torch.int64
+disto_target torch.Size([1, 397, 397, 1, 64]) torch.float32
+disto_coords_ensemble torch.Size([1, 1, 397, 3]) torch.float32
+bfactor torch.Size([1, 2976]) torch.float32
+plddt torch.Size([1, 2976]) torch.float32
+frames_idx torch.Size([1, 1, 397, 3]) torch.int64
+frame_resolved_mask torch.Size([1, 1, 397]) torch.bool
+msa torch.Size([1, 2129, 397]) torch.int64
+msa_paired torch.Size([1, 2129, 397]) torch.float32
+deletion_value torch.Size([1, 2129, 397]) torch.float32
+has_deletion torch.Size([1, 2129, 397]) torch.bool
+deletion_mean torch.Size([1, 397]) torch.float32
+profile torch.Size([1, 397, 33]) torch.float32
+msa_mask torch.Size([1, 2129, 397]) torch.int64
+template_restype torch.Size([1, 1, 397, 33]) torch.int64
+template_frame_rot torch.Size([1, 1, 397, 3, 3]) torch.float32
+template_frame_t torch.Size([1, 1, 397, 3]) torch.float32
+template_cb torch.Size([1, 1, 397, 3]) torch.float32
+template_ca torch.Size([1, 1, 397, 3]) torch.float32
+template_mask_cb torch.Size([1, 1, 397]) torch.float32
+template_mask_frame torch.Size([1, 1, 397]) torch.float32
+template_mask torch.Size([1, 1, 397]) torch.float32
+query_to_template torch.Size([1, 1, 397]) torch.int64
+visibility_ids torch.Size([1, 1, 397]) torch.float32
+ensemble_ref_idxs torch.Size([1, 1]) torch.int64
+rdkit_bounds_index torch.Size([1, 2, 78]) torch.int64
+rdkit_bounds_bond_mask torch.Size([1, 78]) torch.bool
+rdkit_bounds_angle_mask torch.Size([1, 78]) torch.bool
+rdkit_upper_bounds torch.Size([1, 78]) torch.float32
+rdkit_lower_bounds torch.Size([1, 78]) torch.float32
+chiral_atom_index torch.Size([1, 4, 0]) torch.int64
+chiral_reference_mask torch.Size([1, 0]) torch.bool
+chiral_atom_orientations torch.Size([1, 0]) torch.bool
+stereo_bond_index torch.Size([1, 4, 0]) torch.int64
+stereo_reference_mask torch.Size([1, 0]) torch.bool
+stereo_bond_orientations torch.Size([1, 0]) torch.bool
+planar_bond_index torch.Size([1, 6, 0]) torch.int64
+planar_ring_5_index torch.Size([1, 5, 0]) torch.int64
+planar_ring_6_index torch.Size([1, 6, 1]) torch.int64
+connected_chain_index torch.Size([1, 2, 0]) torch.int64
+connected_atom_index torch.Size([1, 2, 0]) torch.int64
+symmetric_chain_index torch.Size([1, 2, 0]) torch.int64
+Non-tensor feature detected in feats: record <class 'list'> 1 <class 'src.boltz.data.types.Record'>
+
+
+## AFFINITY:
+
+token_index torch.Size([1, 211]) torch.int64
+residue_index torch.Size([1, 211]) torch.int64
+asym_id torch.Size([1, 211]) torch.int64
+entity_id torch.Size([1, 211]) torch.int64
+sym_id torch.Size([1, 211]) torch.int64
+mol_type torch.Size([1, 211]) torch.int64
+res_type torch.Size([1, 211, 33]) torch.int64
+disto_center torch.Size([1, 211, 3]) torch.float32
+token_bonds torch.Size([1, 211, 211, 1]) torch.float32
+type_bonds torch.Size([1, 211, 211]) torch.int64
+token_pad_mask torch.Size([1, 211]) torch.float32
+token_resolved_mask torch.Size([1, 211]) torch.float32
+token_disto_mask torch.Size([1, 211]) torch.float32
+contact_conditioning torch.Size([1, 211, 211, 5]) torch.int64
+contact_threshold torch.Size([1, 211, 211]) torch.float32
+method_feature torch.Size([1, 211]) torch.int64
+modified torch.Size([1, 211]) torch.int64
+cyclic_period torch.Size([1, 211]) torch.float32
+affinity_token_mask torch.Size([1, 211]) torch.float32
+ref_pos torch.Size([1, 1536, 3]) torch.float32
+atom_resolved_mask torch.Size([1, 1536]) torch.bool
+ref_atom_name_chars torch.Size([1, 1536, 4, 64]) torch.int64
+ref_element torch.Size([1, 1536, 128]) torch.int64
+ref_charge torch.Size([1, 1536]) torch.float32
+ref_chirality torch.Size([1, 1536]) torch.int64
+atom_backbone_feat torch.Size([1, 1536, 17]) torch.int64
+ref_space_uid torch.Size([1, 1536]) torch.int64
+coords torch.Size([1, 1, 1536, 3]) torch.float32
+atom_pad_mask torch.Size([1, 1536]) torch.float32
+atom_to_token torch.Size([1, 1536, 211]) torch.int64
+token_to_rep_atom torch.Size([1, 211, 1536]) torch.int64
+r_set_to_rep_atom torch.Size([1, 198, 1536]) torch.int64
+token_to_center_atom torch.Size([1, 211, 1536]) torch.int64
+disto_target torch.Size([1, 211, 211, 1, 64]) torch.float32
+disto_coords_ensemble torch.Size([1, 1, 211, 3]) torch.float32
+bfactor torch.Size([1, 1536]) torch.float32
+plddt torch.Size([1, 1536]) torch.float32
+frames_idx torch.Size([1, 1, 211, 3]) torch.int64
+frame_resolved_mask torch.Size([1, 1, 211]) torch.bool
+msa torch.Size([1, 2129, 211]) torch.int64
+msa_paired torch.Size([1, 2129, 211]) torch.float32
+deletion_value torch.Size([1, 2129, 211]) torch.float32
+has_deletion torch.Size([1, 2129, 211]) torch.bool
+deletion_mean torch.Size([1, 211]) torch.float32
+profile torch.Size([1, 211, 33]) torch.float32
+msa_mask torch.Size([1, 2129, 211]) torch.int64
+deletion_mean_affinity torch.Size([1, 211]) torch.float32
+profile_affinity torch.Size([1, 211, 33]) torch.float32
+template_restype torch.Size([1, 1, 211, 33]) torch.int64
+template_frame_rot torch.Size([1, 1, 211, 3, 3]) torch.float32
+template_frame_t torch.Size([1, 1, 211, 3]) torch.float32
+template_cb torch.Size([1, 1, 211, 3]) torch.float32
+template_ca torch.Size([1, 1, 211, 3]) torch.float32
+template_mask_cb torch.Size([1, 1, 211]) torch.float32
+template_mask_frame torch.Size([1, 1, 211]) torch.float32
+template_mask torch.Size([1, 1, 211]) torch.float32
+query_to_template torch.Size([1, 1, 211]) torch.int64
+visibility_ids torch.Size([1, 1, 211]) torch.float32
+ensemble_ref_idxs torch.Size([1, 1]) torch.int64
+rdkit_bounds_index torch.Size([1, 2, 78]) torch.int64
+rdkit_bounds_bond_mask torch.Size([1, 78]) torch.bool
+rdkit_bounds_angle_mask torch.Size([1, 78]) torch.bool
+rdkit_upper_bounds torch.Size([1, 78]) torch.float32
+rdkit_lower_bounds torch.Size([1, 78]) torch.float32
+chiral_atom_index torch.Size([1, 4, 0]) torch.int64
+chiral_reference_mask torch.Size([1, 0]) torch.bool
+chiral_atom_orientations torch.Size([1, 0]) torch.bool
+stereo_bond_index torch.Size([1, 4, 0]) torch.int64
+stereo_reference_mask torch.Size([1, 0]) torch.bool
+stereo_bond_orientations torch.Size([1, 0]) torch.bool
+planar_bond_index torch.Size([1, 6, 0]) torch.int64
+planar_ring_5_index torch.Size([1, 5, 0]) torch.int64
+planar_ring_6_index torch.Size([1, 6, 1]) torch.int64
+connected_chain_index torch.Size([1, 2, 0]) torch.int64
+connected_atom_index torch.Size([1, 2, 0]) torch.int64
+symmetric_chain_index torch.Size([1, 2, 0]) torch.int64
+Non-tensor feature detected in feats: affinity_mw <class 'list'> 1 <class 'float'>
+Non-tensor feature detected in feats: record <class 'list'> 1 <class 'src.boltz.data.types.Record'>

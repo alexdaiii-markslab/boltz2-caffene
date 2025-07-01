@@ -99,6 +99,13 @@ pip boltz2
 
 ## Running
 
+Currently, it is not possible to split model weights across muiltiple GPUs or
+GPU + CPU, so the entire model must fit onto a single GPU. Estimated VRAM
+usage is in the table below, based on the number of amino acids in the
+protein sequence. VRAM usage scales approximately **quadratically**
+with respect to the number of amino acids in the protein sequence because of
+the attention mechanism. 
+
 ### On Mondrian
 
 This is a dual GPU system - 1 of them is used for display (GPU 0) and the other
