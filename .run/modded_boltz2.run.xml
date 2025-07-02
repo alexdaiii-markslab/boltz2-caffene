@@ -15,7 +15,7 @@
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/modded_boltz2.py" />
-    <option name="PARAMETERS" value="predict $PROJECT_DIR$/examples/affinity.yaml --out_dir $PROJECT_DIR$/output --use_msa_server" />
+    <option name="PARAMETERS" value="predict $PROJECT_DIR$/examples/pocket.yaml --out_dir $PROJECT_DIR$/output --use_msa_server" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />

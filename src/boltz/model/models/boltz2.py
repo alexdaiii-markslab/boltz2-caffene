@@ -37,6 +37,7 @@ from boltz.model.optim.ema import EMA
 from boltz.model.optim.scheduler import AlphaFoldLRScheduler
 
 
+
 class Boltz2(LightningModule):
     """Boltz2 model."""
 
@@ -418,9 +419,16 @@ class Boltz2(LightningModule):
                     type(feats[feat]),
                     len(feats[feat]),
                     type(feats[feat][0]),
+                    feats[feat][0],
                 )
             else:
                 print(feat, feats[feat].shape, feats[feat].dtype)
+
+        # pickle the feats
+        # print("Pickling feats for debugging...")
+        # output_path = get_project_root() / "output" / "feats.pkl"
+        # with open(output_path, "wb") as f:
+        #     pickle.dump(feats, f)
 
         with torch.set_grad_enabled(
             self.training and self.structure_prediction_training

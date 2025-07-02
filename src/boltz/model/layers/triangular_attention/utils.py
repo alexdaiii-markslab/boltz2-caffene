@@ -84,10 +84,11 @@ def _fetch_dims(tree):
     elif tree_type is list or tree_type is tuple:
         for t in tree:
             shapes.extend(_fetch_dims(t))
-    elif tree_type is torch.Tensor:
+    # elif (tree_type is torch.Tensor) or (tree_type is RecorderTensor):
+    elif isinstance(tree, torch.Tensor):
         shapes.append(tree.shape)
     else:
-        raise ValueError("Not supported")
+        raise ValueError(f"Not supported type: {tree_type}")
 
     return shapes
 
@@ -294,7 +295,6 @@ def chunk_layer(
     """
     if not (len(inputs) > 0):
         raise ValueError("Must provide at least one input")
-
     initial_dims = [shape[:no_batch_dims] for shape in _fetch_dims(inputs)]
     orig_batch_dims = tuple([max(s) for s in zip(*initial_dims)])
 
@@ -364,7 +364,7 @@ def chunk_layer(
                     x1[i : i + chunk_size] += x2
                 else:
                     x1[i : i + chunk_size] = x2
-        elif out_type is torch.Tensor:
+        elif isinstance(output_chunk, torch.Tensor):
             if _add_into_out:
                 out[i : i + chunk_size] += output_chunk
             else:
