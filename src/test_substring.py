@@ -48,7 +48,13 @@ def test_substring_end(s_fix):
     assert substring == expected_substring
     assert remapped_pointers == expected_pointers
 
-
+@pytest.mark.parametrize(
+    "pointers",
+    (
+        [3, 9, 18],
+        [18, 3, 9],
+    )
+)
 @pytest.mark.parametrize(
     "_name, remove_region, expected_substring, expected_pointers",
     [
@@ -65,9 +71,8 @@ def test_substring_end(s_fix):
     ],
 )
 def test_remove_region_no_substring(
-    s_fix, _name, remove_region, expected_substring, expected_pointers
+    s_fix, _name, remove_region, expected_substring, expected_pointers, pointers
 ):
-    pointers = [3, 9, 18]
     s_window = (0, len(s_fix) - 1)
     # print("before pointers:", [
     #     f"{p} ({s_fix[p]})" for p in pointers
@@ -78,6 +83,9 @@ def test_remove_region_no_substring(
     # print("after pointers:", [
     #     f"{p} ({substring[p]})" for p in remapped_pointers if p < len(substring)
     # ])
+
+    remapped_pointers.sort()
+
     assert substring == expected_substring
     assert remapped_pointers == expected_pointers
 
