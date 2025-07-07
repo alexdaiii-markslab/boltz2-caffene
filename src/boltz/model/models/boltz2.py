@@ -37,7 +37,6 @@ from boltz.model.optim.ema import EMA
 from boltz.model.optim.scheduler import AlphaFoldLRScheduler
 
 
-
 class Boltz2(LightningModule):
     """Boltz2 model."""
 

@@ -667,9 +667,7 @@ def predict(  # noqa: C901, PLR0915, PLR0912
         # print("Model architecture visualized and saved as 'boltz_architecture.png'.")
 
         print("Loading picked input")
-        with open(
-            get_project_root() / "output" / "feats.pkl", "rb"
-        ) as f:
+        with open(get_project_root() / "output" / "feats.pkl", "rb") as f:
             example_input = pickle.load(f)
 
         print("Visualizing model architecture...")
