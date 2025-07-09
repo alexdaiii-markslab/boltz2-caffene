@@ -48,24 +48,50 @@ def test_substring_end(s_fix):
     assert substring == expected_substring
     assert remapped_pointers == expected_pointers
 
+
 @pytest.mark.parametrize(
     "pointers",
     (
         [3, 9, 18],
         [18, 3, 9],
-    )
+    ),
 )
 @pytest.mark.parametrize(
     "_name, remove_region, expected_substring, expected_pointers",
     [
         ("remove_region_start", [(0, 2)], "defghijklmnopqrstuvwxyz", [0, 6, 15]),
         ("remove_region_end", [(20, 25)], "abcdefghijklmnopqrst", [3, 9, 18]),
-        ("remove_region_middle_after_pointers", [(22, 24)], "abcdefghijklmnopqrstuvz", [3, 9, 18]),
-        ("remove_region_middle_in_between_pointers", [(4, 8)], "abcdjklmnopqrstuvwxyz", [3, 4, 13]),
-        ("remove_region_middle_in_between_pointers2", [(10, 17)], "abcdefghijstuvwxyz", [3, 9, 10]),
+        (
+            "remove_region_middle_after_pointers",
+            [(22, 24)],
+            "abcdefghijklmnopqrstuvz",
+            [3, 9, 18],
+        ),
+        (
+            "remove_region_middle_in_between_pointers",
+            [(4, 8)],
+            "abcdjklmnopqrstuvwxyz",
+            [3, 4, 13],
+        ),
+        (
+            "remove_region_middle_in_between_pointers2",
+            [(10, 17)],
+            "abcdefghijstuvwxyz",
+            [3, 9, 10],
+        ),
         ("remove_region_multiple", [(0, 2), (20, 25)], "defghijklmnopqrst", [0, 6, 15]),
-        ("remove_region_multiple2", [(0, 2), (4, 8), (20, 25)], "djklmnopqrst", [0, 1, 10]),
-        ("remove_region_multiple3", [(0, 2), (4, 8), (10, 17), (19, 25)], "djs", [0, 1, 2]),
+        (
+            "remove_region_multiple2",
+            [(0, 2), (4, 8), (20, 25)],
+            "djklmnopqrst",
+            [0, 1, 10],
+        ),
+        (
+            "remove_region_multiple3",
+            [(0, 2), (4, 8), (10, 17), (19, 25)],
+            "djs",
+            [0, 1, 2],
+        ),
         ("shuffled", [(20, 25), (0, 2)], "defghijklmnopqrst", [0, 6, 15]),
         ("shuffled2", [(10, 17), (0, 2), (4, 8)], "djstuvwxyz", [0, 1, 2]),
     ],
@@ -88,4 +114,3 @@ def test_remove_region_no_substring(
 
     assert substring == expected_substring
     assert remapped_pointers == expected_pointers
-

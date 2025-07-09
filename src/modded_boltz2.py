@@ -10,7 +10,6 @@ from typing import Literal, Optional
 
 import click
 import torch
-from torchview import draw_graph
 
 from src.boltz.main import (
     download_boltz1,
@@ -509,138 +508,9 @@ def predict(  # noqa: C901, PLR0915, PLR0912
         )
         model_module.eval()
 
-        # TODO: REMOVE THIS
-        # example_input = {
-        #     "token_index": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "residue_index": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "asym_id": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "entity_id": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "sym_id": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "mol_type": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "res_type": torch.randint(50, size=(1, 397, 33), dtype=torch.int64),
-        #     "disto_center": torch.rand(1, 397, 3, dtype=torch.float32),
-        #     "token_bonds": torch.rand(1, 397, 397, 1, dtype=torch.float32),
-        #     "type_bonds": torch.randint(50, size=(1, 397, 397), dtype=torch.int64),
-        #     "token_pad_mask": torch.rand(1, 397, dtype=torch.float32),
-        #     "token_resolved_mask": torch.rand(1, 397, dtype=torch.float32),
-        #     "token_disto_mask": torch.rand(1, 397, dtype=torch.float32),
-        #     "contact_conditioning": torch.randint(
-        #         50, size=(1, 397, 397, 5), dtype=torch.int64
-        #     ),
-        #     "contact_threshold": torch.rand(1, 397, 397, dtype=torch.float32),
-        #     "method_feature": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "modified": torch.randint(25, size=(1, 397), dtype=torch.int64),
-        #     "cyclic_period": torch.zeros(1, 397, dtype=torch.float32),
-        #     "affinity_token_mask": torch.rand(1, 397, dtype=torch.float32),
-        #     "ref_pos": torch.rand(1, 2976, 3, dtype=torch.float32),
-        #     "atom_resolved_mask": torch.randint(2, size=(1, 2976), dtype=torch.bool),
-        #     "ref_atom_name_chars": torch.randint(
-        #         20, size=(1, 2976, 4, 64), dtype=torch.int64
-        #     ),
-        #     "ref_element": torch.randint(25, size=(1, 2976, 128), dtype=torch.int64),
-        #     "ref_charge": torch.rand(1, 2976, dtype=torch.float32),
-        #     "ref_chirality": torch.randint(25, size=(1, 2976), dtype=torch.int64),
-        #     "atom_backbone_feat": torch.randint(
-        #         25, size=(1, 2976, 17), dtype=torch.int64
-        #     ),
-        #     "ref_space_uid": torch.randint(25, size=(1, 2976), dtype=torch.int64),
-        #     "coords": torch.rand(1, 1, 2976, 3, dtype=torch.float32),
-        #     "atom_pad_mask": torch.rand(1, 2976, dtype=torch.float32),
-        #     "atom_to_token": torch.randint(25, size=(1, 2976, 397), dtype=torch.int64),
-        #     "token_to_rep_atom": torch.randint(
-        #         25, size=(1, 397, 2976), dtype=torch.int64
-        #     ),
-        #     "r_set_to_rep_atom": torch.randint(
-        #         25, size=(1, 384, 2976), dtype=torch.int64
-        #     ),
-        #     "token_to_center_atom": torch.randint(
-        #         25, size=(1, 397, 2976), dtype=torch.int64
-        #     ),
-        #     "disto_target": torch.rand(1, 397, 397, 1, 64, dtype=torch.float32),
-        #     "disto_coords_ensemble": torch.rand(1, 1, 397, 3, dtype=torch.float32),
-        #     "bfactor": torch.rand(1, 2976, dtype=torch.float32),
-        #     "plddt": torch.rand(1, 2976, dtype=torch.float32),
-        #     "frames_idx": torch.randint(10, size=(1, 1, 397, 3), dtype=torch.int64),
-        #     "frame_resolved_mask": torch.randint(2, size=(1, 1, 397), dtype=torch.bool),
-        #     "msa": torch.randint(10, size=(1, 2129, 397), dtype=torch.int64),
-        #     "msa_paired": torch.rand(1, 2129, 397, dtype=torch.float32),
-        #     "deletion_value": torch.rand(1, 2129, 397, dtype=torch.float32),
-        #     "has_deletion": torch.randint(2, size=(1, 2129, 397), dtype=torch.bool),
-        #     "deletion_mean": torch.rand(1, 397, dtype=torch.float32),
-        #     "profile": torch.rand(1, 397, 33, dtype=torch.float32),
-        #     "msa_mask": torch.randint(10, size=(1, 2129, 397), dtype=torch.int64),
-        #     "template_restype": torch.randint(
-        #         10, size=(1, 1, 397, 33), dtype=torch.int64
-        #     ),
-        #     "template_frame_rot": torch.rand(1, 1, 397, 3, 3, dtype=torch.float32),
-        #     "template_frame_t": torch.rand(1, 1, 397, 3, dtype=torch.float32),
-        #     "template_cb": torch.rand(1, 1, 397, 3, dtype=torch.float32),
-        #     "template_ca": torch.rand(1, 1, 397, 3, dtype=torch.float32),
-        #     "template_mask_cb": torch.rand(1, 1, 397, dtype=torch.float32),
-        #     "template_mask_frame": torch.rand(1, 1, 397, dtype=torch.float32),
-        #     "template_mask": torch.rand(1, 1, 397, dtype=torch.float32),
-        #     "query_to_template": torch.randint(10, size=(1, 1, 397), dtype=torch.int64),
-        #     "visibility_ids": torch.rand(1, 1, 397, dtype=torch.float32),
-        #     "ensemble_ref_idxs": torch.randint(25, size=(1, 1), dtype=torch.int64),
-        #     "rdkit_bounds_index": torch.randint(25, size=(1, 2, 78), dtype=torch.int64),
-        #     "rdkit_bounds_bond_mask": torch.randint(2, size=(1, 78), dtype=torch.bool),
-        #     "rdkit_bounds_angle_mask": torch.randint(2, size=(1, 78), dtype=torch.bool),
-        #     "rdkit_upper_bounds": torch.rand(1, 78, dtype=torch.float32),
-        #     "rdkit_lower_bounds": torch.rand(1, 78, dtype=torch.float32),
-        #     "chiral_atom_index": torch.randint(10, size=(1, 4, 0), dtype=torch.int64),
-        #     "chiral_reference_mask": torch.randint(2, size=(1, 0), dtype=torch.bool),
-        #     "chiral_atom_orientations": torch.randint(2, size=(1, 0), dtype=torch.bool),
-        #     "stereo_bond_index": torch.randint(100, size=(1, 4, 0), dtype=torch.int64),
-        #     "stereo_reference_mask": torch.randint(2, size=(1, 0), dtype=torch.bool),
-        #     "stereo_bond_orientations": torch.randint(2, size=(1, 0), dtype=torch.bool),
-        #     "planar_bond_index": torch.randint(10, size=(1, 6, 0), dtype=torch.int64),
-        #     "planar_ring_5_index": torch.randint(10, size=(1, 5, 0), dtype=torch.int64),
-        #     "planar_ring_6_index": torch.randint(10, size=(1, 6, 1), dtype=torch.int64),
-        #     "connected_chain_index": torch.randint(
-        #         10, size=(1, 2, 0), dtype=torch.int64
-        #     ),
-        #     "connected_atom_index": torch.randint(
-        #         10, size=(1, 2, 0), dtype=torch.int64
-        #     ),
-        #     "symmetric_chain_index": torch.randint(
-        #         10, size=(1, 2, 0), dtype=torch.int64
-        #     ),
-        #     "record": [
-        #         Record(
-        #             id="affinity",
-        #             structure=StructureInfo(),
-        #             chains=[
-        #                 ChainInfo(
-        #                     chain_id=0,
-        #                     chain_name="A",
-        #                     mol_type=0,
-        #                     cluster_id=-1,
-        #                     msa_id="affinity_0",
-        #                     num_residues=384,
-        #                     valid=True,
-        #                     entity_id=0,
-        #                 ),
-        #                 ChainInfo(
-        #                     chain_id=1,
-        #                     chain_name="B",
-        #                     mol_type=3,
-        #                     cluster_id=-1,
-        #                     msa_id=-1,
-        #                     num_residues=1,
-        #                     valid=True,
-        #                     entity_id=1,
-        #                 ),
-        #             ],
-        #             interfaces=[],
-        #             inference_options=InferenceOptions(
-        #                 pocket_constraints=[(1, [(0, 25)], 6.0)]
-        #             ),
-        #             templates=[],
-        #             md=None,
-        #             affinity=AffinityInfo(chain_id=1, mw=171.11099999999996),
-        #         )
-        #     ],
-        # }
+        print("Loading picked input")
+        with open(get_project_root() / "output" / "feats.pkl", "rb") as f:
+            example_input = pickle.load(f)
 
         # print("Visualizing model architecture...")
         # model2 = model_cls.load_from_checkpoint(
@@ -658,41 +528,13 @@ def predict(  # noqa: C901, PLR0915, PLR0912
         # model2.eval()
         # model_graph = draw_graph(
         #     model2,
-        #     device="cuda",
+        #     device="cpu",
         #     input_data={
         #         "feats": example_input,
         #     },
         # )
         # model_graph.visual_graph.render("boltz_architecture", format="png")
         # print("Model architecture visualized and saved as 'boltz_architecture.png'.")
-
-        print("Loading picked input")
-        with open(get_project_root() / "output" / "feats.pkl", "rb") as f:
-            example_input = pickle.load(f)
-
-        print("Visualizing model architecture...")
-        model2 = model_cls.load_from_checkpoint(
-            checkpoint,
-            strict=True,
-            predict_args=predict_args,
-            map_location="cpu",
-            diffusion_process_args=asdict(diffusion_params),
-            ema=False,
-            use_kernels=False,
-            pairformer_args=asdict(pairformer_args),
-            msa_args=asdict(msa_args),
-            steering_args=asdict(steering_args),
-        )
-        model2.eval()
-        model_graph = draw_graph(
-            model2,
-            device="cpu",
-            input_data={
-                "feats": example_input,
-            },
-        )
-        model_graph.visual_graph.render("boltz_architecture", format="png")
-        print("Model architecture visualized and saved as 'boltz_architecture.png'.")
 
         # Compute structure predictions
         trainer.predict(
@@ -802,7 +644,7 @@ def predict(  # noqa: C901, PLR0915, PLR0912
 
 if __name__ == "__main__":
     EXAMPLE_TARGET_DIR = (
-        Path(__file__).parent.parent / "output" / "boltz_results_affinity"
+        Path(__file__).parent.parent / "output/modded_boltz"
     )
 
     if EXAMPLE_TARGET_DIR.exists():
